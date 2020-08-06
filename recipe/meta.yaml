@@ -1,5 +1,5 @@
 {% set name = "numba" %}
-{% set version = "0.50.1" %}
+{% set version = "0.51.0dev.rapidsai0.15" %}
 {% set sha256 = "f45d6a85c8aedde8c99e775070f3fa699d6b941f0f635e268c14b3561d787789" %}
 
 package:
@@ -8,11 +8,13 @@ package:
 
 source:
   # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  url: https://github.com/numba/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  #url: https://github.com/numba/{{ name }}/archive/{{ version }}.tar.gz
+  #sha256: {{ sha256 }}
+  git_url: https://github.com/numba/{{ name }}.git
+  git_rev: release0.51
 
 build:
-  number: 1
+  number: {{ GIT_DESCRIBE_NUMBER }}
   entry_points:
     - pycc = numba.pycc:main
     - numba = numba.misc.numba_entry:main
